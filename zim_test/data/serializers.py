@@ -5,4 +5,4 @@ class DataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Data
-        fields = ['advisor', 'data_name', 'data_check']
+        fields = ['firm', 'data_name', 'data_check']

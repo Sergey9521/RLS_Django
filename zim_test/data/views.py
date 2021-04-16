@@ -14,13 +14,13 @@ class DataList(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            advisor = Advisors.objects.filter(user_id=self.request.user.id)
+            firm = Advisors.objects.get(user_id=self.request.user.id)
         except ObjectDoesNotExist:
-            advisor = None
+            firm = None
 
         with connection.cursor() as cursor:
-            if advisor:
-                cursor.execute(f'SET rls.advn = {advisor.id}')
+            if firm:
+                cursor.execute(f'SET rls.advn = {firm.id}')
             else:
                 raise PermissionDenied("You have no access to this data")
 
